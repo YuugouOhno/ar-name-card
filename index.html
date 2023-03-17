@@ -61,7 +61,7 @@
           THREEx.ArToolkitContext.baseURL + "../data/data/camera_para.dat",
         detectionMode: "mono",
         // ※1 作ったマーカーのPattern Ratioを入れる
-        patternRatio: 0.6,
+        patternRatio: 0.7,
       });
 
       arToolkitContext.init(
@@ -80,7 +80,7 @@
       const markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
         type: "pattern",
         // ※2 マーカーのpattファイルのパスを入れる
-        patternUrl: THREEx.ArToolkitContext.baseURL + "../data/data/patt.hiro",
+        patternUrl: "./marker/pattern.patt",
         changeMatrixMode: "cameraTransformMatrix",
       });
     };

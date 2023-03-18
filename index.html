@@ -34,7 +34,8 @@
       setScene();
       setCamera();
       setObject();
-      createBoids(params1);
+      createBoids(params);
+      setCard();
       setArToolkit();
       setRenderer();
       animate();
@@ -85,12 +86,20 @@
       const markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
         type: "pattern",
         // ※2 マーカーのpattファイルのパスを入れる
-        patternUrl: "./marker/pattern.patt",
+        patternUrl: "./marker/pattern2.patt",
         changeMatrixMode: "cameraTransformMatrix",
       });
     };
 
     const setObject = () => {
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const material = new THREE.MeshNormalMaterial();
+      object = new THREE.Mesh(geometry, material);
+      object.position.set(0, 0, 0);
+      scene.add(object);
+    };
+
+    const setCard = () => {
       const geometry = new THREE.BoxGeometry(1, 1, 1);
       const material = new THREE.MeshNormalMaterial();
       object = new THREE.Mesh(geometry, material);
@@ -128,29 +137,22 @@
       }
     };
 
-    const redPhysicalMaterial = new THREE.MeshPhysicalMaterial({
-      color: "#ff0000",
-      metalness: 0.865,
-      roughness: 0.373,
-      flatShading: true,
-    });
-
-    const params1 = {
-      TYPE: "red",
-      SPEED: 0.6,
-      MAX_SPEED: 2,
-      CENTER_OF_BOIDS: new THREE.Vector3(0, 0, 0), //群れの中心
-      ACTION_RANGE_OF_BOIDS: 10, //群れの行動範囲
-      WEIGHT_TO_SEPARATION: 0.1, //条件1 分離
-      WEIGHT_TO_ALIGNMENT: 0.0001, //条件2 整列
-      WEIGHT_TO_COHESION: 0.0001, //条件3 凝集
-      SEPARATION_RANGE: 2, // 分離する範囲
-      COHESION_RANGE: 4, // 凝集する範囲
-      WEIGHT_TO_CENTER: 1,
-      MATERIAL: redPhysicalMaterial,
-      SCALE: { x: 0.1, y: 0.03, z: 0.07 },
-      NUMBER: 100,
-    }
+    const params = {
+    TYPE: "purple",
+    SPEED: 0.9,
+    MAX_SPEED: 2,
+    CENTER_OF_BOIDS: new THREE.Vector3(0, 0, 0), //群れの中心
+    ACTION_RANGE_OF_BOIDS: 100, //群れの行動範囲
+    WEIGHT_TO_SEPARATION: 2, //条件1 分離
+    WEIGHT_TO_ALIGNMENT: 0.001, //条件2 整列
+    WEIGHT_TO_COHESION: 0.001, //条件3 凝集
+    SEPARATION_RANGE: 10, // 分離する範囲
+    COHESION_RANGE: 30, // 凝集する範囲
+    WEIGHT_TO_CENTER: 0.001,
+    MATERIAL: new THREE.MeshNormalMaterial(),
+    SCALE: {x:0.7,y:0.7,z:0.7},
+    NUMBER: 400,
+}
 
     const createBoids = (params) => {
       for (let i = 0; i < params.NUMBER; i++) {
@@ -221,6 +223,7 @@
         if (!number_of_bois.includes(this.type)) {
           number_of_bois.push(this.type);
         };
+        print(this.object)
       }
       update() {
         //各条件の合算
@@ -252,7 +255,6 @@
         this.getAlignment(); // 整列
         this.getCohesion(); // 集合
         this.setActionRange(); // 行動範囲外に出た際の処理
-        // this.getRepellentForce(); // 自分の周りを追い出す
         this.update(); // 位置ベクトルに反映する
         this.setFaceDirection(); //進行方向を向く
         this.object.position.copy(this.xyz); // 描画
@@ -336,16 +338,15 @@
     }
 
     const animate = () => {
-      console.log("test")
-    window.requestAnimationFrame(animate);
+      window.requestAnimationFrame(animate);
 
-    boids.forEach(biont => {
+      boids.forEach(biont => {
         biont.draw();
-    });
+      });
 
-    // Render
-    renderer.render(scene, camera);
-}
+      // Render
+      renderer.render(scene, camera);
+    }
 
     window.addEventListener("resize", () => {
       onResize();

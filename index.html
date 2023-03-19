@@ -35,7 +35,7 @@
       setCamera();
       // setObject();
       // createBoids(params);
-      setCard();
+      setNameCards();
       setArToolkit();
       setRenderer();
       animate();
@@ -99,15 +99,6 @@
       scene.add(object);
     };
 
-    const setCard = () => {
-      const geometry = new THREE.PlaneGeometry(1, 1);
-      const material = new THREE.MeshNormalMaterial();
-      const plane = new THREE.Mesh(geometry, material);
-      plane.rotation.x = -90;
-      plane.position.set(-1.2, 0, 0);
-      scene.add(plane);
-    };
-
     const setRenderer = () => {
       renderer = new THREE.WebGLRenderer({
         antialias: true,
@@ -156,6 +147,43 @@
     window.onload = () => {
       init();
     };
+
+    // ----------------------------------------------------------------------------------------------------------------
+
+
+    const setIcon = () => {
+      const textureLoader = new THREE.TextureLoader();
+      const icon_texture = textureLoader.load('./icon.png');
+      const geometry = new THREE.CircleGeometry(0.7, 32);
+      const material = new THREE.MeshBasicMaterial({
+        map: icon_texture,
+        side: THREE.DoubleSide,
+      });
+      const icon = new THREE.Mesh(geometry, material);
+      icon.rotation.x = -90;
+      icon.position.set(-1.2, 0, 0);
+      scene.add(icon);
+    };
+
+    const setName = () => {
+      const textureLoader = new THREE.TextureLoader();
+      const name_texture = textureLoader.load('./name.png');
+      const geometry = new THREE.PlaneGeometry(3,1.5);
+      const material = new THREE.MeshBasicMaterial({
+        map: name_texture,
+        side: THREE.DoubleSide,
+      });
+      const name = new THREE.Mesh(geometry, material);
+      name.rotation.x = -90;
+      name.position.set(1.2, 0, 0);
+      scene.add(name);
+
+    }
+
+    const setNameCards = () => {
+      setIcon()
+      setName()
+    }
 
     // ----------------------------------------------------------------------------------------------------------------
 

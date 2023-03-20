@@ -8,13 +8,18 @@
   <title>Vite App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/three.js/build/ar.js"></script>
+  <!-- DRACOLoader.js -->
+  <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/loaders/DRACOLoader.js"></script>
+
+  <!-- GLTFLoader.js -->
+  <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/loaders/GLTFLoader.js"></script>
   <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
 
 <body>
   <canvas id="canvas"></canvas>
-  <canvas class="webgl" style="z-index: index 10;"></canvas>
-  <script type="importmap">
+  <!-- <canvas class="webgl" style="z-index: index 10;"></canvas> -->
+  <!-- <script type="importmap">
     {
       "imports": {
         "three": "https://unpkg.com/three@<version>/build/three.module.js",
@@ -22,11 +27,12 @@
       }
     }
   </script>
-  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./src/main.js"></script> -->
 
 
 
   <script>
+
     let w;
     let h;
     let canvas;
@@ -34,6 +40,7 @@
     let camera;
     let renderer;
     let object;
+    let light;
 
     let arToolkitSource;
     let arToolkitContext;
@@ -50,8 +57,12 @@
       setScene();
       setCamera();
       // setObject();
-      // createBoids(params);
+      createBoids(params);
+      // const test = createGlTFfish();
+      // const test = fish({ x: 0.07, y: 0.07, z: 0.07 }, fishMaterial)
+      // scene.add(test)
       setNameCards();
+      setLight();
       setArToolkit();
       setRenderer();
       animate();
@@ -66,6 +77,11 @@
       camera = new THREE.PerspectiveCamera(65, w / h, 0.1, 1000);
       scene.add(camera);
     };
+
+    const setLight = () => {
+      light = new THREE.DirectionalLight("#ffffff", 4);
+      scene.add(light);
+    }
 
     const setArToolkit = () => {
       arToolkitSource = new THREEx.ArToolkitSource({
@@ -168,6 +184,7 @@
 
     window.onload = () => {
       init();
+      console.log("load")
     };
 
     // ----------------------------------------------------------------------------------------------------------------
@@ -208,12 +225,53 @@
     }
 
     // ----------------------------------------------------------------------------------------------------------------
+    // 3dモデルの読み込み
+    const createGlTFfish = () => {
+      const glTFfish = new THREE.Group();
+      const manager = new THREE.LoadingManager();
+      manager.onProgress = function (item, loaded, total) { };
+      const onProgress = function (xhr) { };
+      const onError = function (xhr) { };
+
+      // GLTF 3DモデルLoader
+      const loader = new THREE.GLTFLoader();
+
+      loader.setCrossOrigin('anonymous'); // r84 以降は明示的に setCrossOrigin() を指定する必要がある
+
+
+      // Load a glTF Animation resource
+      loader.load(
+        // resource URL
+        "./3dmodel/Shark.glb",
+        // called when the resource is loaded
+        function (gltf) {
+
+          const mesh = gltf.scene;
+          mesh.scale.set(6, 6, 6);
+          mesh.rotation.set(0, -90, 0);
+          glTFfish.add(mesh);
+
+        }
+      );
+      return glTFfish;
+    }
+
+
+
+    // ----------------------------------------------------------------------------------------------------------------
+
+
+    const fishMaterial = new THREE.MeshPhysicalMaterial({
+      roughness: 0.8,
+      transmission: 1,
+      thickness: 1, // Add refraction!
+    });
 
     const params = {
       TYPE: "purple",
       SPEED: 0.9,
       MAX_SPEED: 2,
-      CENTER_OF_BOIDS: new THREE.Vector3(0, 0, -50), //群れの中心
+      CENTER_OF_BOIDS: new THREE.Vector3(0, 0, 0), //群れの中心
       ACTION_RANGE_OF_BOIDS: 100, //群れの行動範囲
       WEIGHT_TO_SEPARATION: 2, //条件1 分離
       WEIGHT_TO_ALIGNMENT: 0.001, //条件2 整列
@@ -221,7 +279,7 @@
       SEPARATION_RANGE: 10, // 分離する範囲
       COHESION_RANGE: 30, // 凝集する範囲
       WEIGHT_TO_CENTER: 0.001,
-      MATERIAL: new THREE.MeshNormalMaterial(),
+      MATERIAL: fishMaterial,
       SCALE: { x: 0.7, y: 0.7, z: 0.7 },
       NUMBER: 400,
     }
@@ -267,7 +325,8 @@
 
     class Biont {
       constructor(x, y, z, id, params) {
-        this.object = fish(params.SCALE, params.MATERIAL);
+        // this.object = fish(params.SCALE, params.MATERIAL);
+        this.object = createGlTFfish();
         scene.add(this.object)
 
         this.speed = params.SPEED; //速度
@@ -410,6 +469,9 @@
         this.object.lookAt(this.xyz);
       }
     }
+
+
+
   </script>
 </body>
 

@@ -1,3 +1,6 @@
+console.log(THREE)
+console.log("THREE")
+
 let w;
 let h;
 let canvas;
@@ -12,7 +15,7 @@ const number_of_bois = [];
 const initThree = () => {
     w = window.innerWidth;
     h = window.innerHeight;
-    canvas = document.getElementById("canvas");
+    canvas = document.getElementById("fishcanvas");
     setScene();
     setCamera();
     setObject();
@@ -43,15 +46,18 @@ const setObject = () => {
 const setRenderer = () => {
     renderer = new THREE.WebGLRenderer({
         antialias: true,
+        alpha: true,
         canvas: canvas,
     });
-    renderer.setClearColor(0x0000ff, 1.0);
+    renderer.setClearColor(0x000000, 0);
     renderer.setSize(w, h);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setAnimationLoop(() => {
         render();
     });
 };
+
+
 
 const render = () => {
     object.rotation.x += 0.01;
@@ -61,6 +67,7 @@ const render = () => {
 
 window.onload = () => {
     initThree();
+
 };
 
 // ----------------------------------------------------------------------------------------------------------------

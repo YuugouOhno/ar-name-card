@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "device-orientation-controls": "^1.1.0",
+    "three": "^0.126.1"
   }
 }

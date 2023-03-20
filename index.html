@@ -13,6 +13,10 @@
 <body>
   <a href="/test2.html">test2</a>
   <canvas id="canvas"></canvas>
+  <canvas id="fishcanvas"></canvas>
+
+
+
   <script>
     let w;
     let h;
@@ -25,6 +29,8 @@
     let arToolkitSource;
     let arToolkitContext;
 
+    let markerTime;
+
     const boids = [];
     const number_of_bois = [];
 
@@ -35,12 +41,27 @@
       setScene();
       setCamera();
       // setObject();
-      // createBoids(params);
+      createBoids(params);
       setNameCards();
       setArToolkit();
       setRenderer();
       animate();
     };
+
+    const fishinit = () => {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      fishcanvas = document.getElementById("fishcanvas");
+      setFishScene();
+      setFishCamera();
+      // setObject();
+      createBoids(params);
+      setFishRenderer();
+      fishanimate();
+    };
+
+    
+
 
     const setScene = () => {
       scene = new THREE.Scene();
@@ -90,6 +111,12 @@
         patternUrl: "./marker/pattern3.patt",
         changeMatrixMode: "cameraTransformMatrix",
       });
+
+      markerTime = markerControls.addEventListener("markerFound", () => {
+        // マーカーが見つかっている時は毎秒呼ばれる
+        console.log("marker found");
+      });
+
     };
 
     const setObject = () => {
@@ -169,7 +196,7 @@
     const setName = () => {
       const textureLoader = new THREE.TextureLoader();
       const name_texture = textureLoader.load('./name.png');
-      const geometry = new THREE.PlaneGeometry(3,1.5);
+      const geometry = new THREE.PlaneGeometry(3, 1.5);
       const material = new THREE.MeshBasicMaterial({
         map: name_texture,
         side: THREE.DoubleSide,
@@ -192,7 +219,7 @@
       TYPE: "purple",
       SPEED: 0.9,
       MAX_SPEED: 2,
-      CENTER_OF_BOIDS: new THREE.Vector3(0, 0, 0), //群れの中心
+      CENTER_OF_BOIDS: new THREE.Vector3(0, 0, -50), //群れの中心
       ACTION_RANGE_OF_BOIDS: 100, //群れの行動範囲
       WEIGHT_TO_SEPARATION: 2, //条件1 分離
       WEIGHT_TO_ALIGNMENT: 0.001, //条件2 整列
@@ -206,9 +233,12 @@
     }
 
     const createBoids = (params) => {
+      console.log(markerTime)
+      console.log("createfish")
+
       for (let i = 0; i < params.NUMBER; i++) {
         boids.push(
-          new Biont((Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, i, params)
+          new Biont((Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2 - 50, (Math.random() - 0.5) * 2, i, params)
         );
       }
     }

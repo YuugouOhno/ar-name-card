@@ -8,12 +8,22 @@
   <title>Vite App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/three.js/build/ar.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
 
 <body>
   <a href="/test2.html">test2</a>
   <canvas id="canvas"></canvas>
-  <canvas id="fishcanvas"></canvas>
+  <canvas class="webgl" style="z-index: index 10;"></canvas>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@<version>/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="./src/main.js"></script>
 
 
 
@@ -41,27 +51,12 @@
       setScene();
       setCamera();
       // setObject();
-      createBoids(params);
+      // createBoids(params);
       setNameCards();
       setArToolkit();
       setRenderer();
       animate();
     };
-
-    const fishinit = () => {
-      w = window.innerWidth;
-      h = window.innerHeight;
-      fishcanvas = document.getElementById("fishcanvas");
-      setFishScene();
-      setFishCamera();
-      // setObject();
-      createBoids(params);
-      setFishRenderer();
-      fishanimate();
-    };
-
-    
-
 
     const setScene = () => {
       scene = new THREE.Scene();
@@ -69,7 +64,7 @@
     };
 
     const setCamera = () => {
-      camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 30);
+      camera = new THREE.PerspectiveCamera(65, w / h, 0.1, 1000);
       scene.add(camera);
     };
 

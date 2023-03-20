@@ -10,7 +10,6 @@ import scene from "./three-scene";
 import { directionalLight } from "./three-light";
 
 import onWindowResize from "./onWindowResize";
-import keyControls from "./keyControls";
 import createBoids from "./createBoids";
 import animate from "./animate";
 
@@ -23,7 +22,7 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
 
   // シーンに追加
-  scene.add(aquarium, cameraTarget, camera, directionalLight);
+  scene.add(camera, directionalLight);
 
   // biontを作成
   // createBoids(params1);
@@ -37,5 +36,3 @@ function init() {
 }
 
 window.addEventListener("load", init);
-
-keyControls();

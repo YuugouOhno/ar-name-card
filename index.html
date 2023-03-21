@@ -22,16 +22,6 @@
   </a>
 
   <canvas id="canvas"></canvas>
-  <!-- <canvas class="webgl" style="z-index: index 10;"></canvas> -->
-  <!-- <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@<version>/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@<version>/examples/jsm/"
-      }
-    }
-  </script>
-  <script type="module" src="./src/main.js"></script> -->
 
 
 
@@ -136,7 +126,7 @@
       const markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
         type: "pattern",
         // ※2 マーカーのpattファイルのパスを入れる
-        patternUrl: "./marker/pattern3.patt",
+        patternUrl: "./marker/pattern.patt",
         changeMatrixMode: "cameraTransformMatrix",
       });
 
@@ -206,6 +196,7 @@
     };
 
     // ----------------------------------------------------------------------------------------------------------------
+    // 名刺の表示
     let icon
     let name
 
@@ -219,7 +210,7 @@
       });
       icon = new THREE.Mesh(geometry, material);
       icon.rotation.x = -90;
-      icon.position.set(-1.2, 0, 0);
+      icon.position.set(-1.2, 1, 0);
       scene.add(icon);
     };
 
@@ -314,7 +305,7 @@
 
       for (let i = 0; i < params.NUMBER; i++) {
         boids.push(
-          new Biont((Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2 - 50, (Math.random() - 0.5) * 2, i, params)
+          new Biont((Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, i, params)
         );
       }
     }

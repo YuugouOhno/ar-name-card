@@ -225,11 +225,11 @@
       cardsContainer.add(card1)
 
       // アイコンの裏にあるシート
-      const geometry1_2 = new THREE.CircleGeometry(1, 32)
-      const card1_2 = new THREE.Mesh(geometry1_2, material_basesheet);
-      card1_2.position.set(-1.1, -0.1, 0);
-      card1_2.rotation.x = -90;
-      cardsContainer.add(card1_2)
+      // const geometry1_2 = new THREE.CircleGeometry(1, 32)
+      // const card1_2 = new THREE.Mesh(geometry1_2, material_basesheet);
+      // card1_2.position.set(-1.1, -0.1, 0);
+      // card1_2.rotation.x = -90;
+      // cardsContainer.add(card1_2)
 
       // 名前
       const texture2 = textureLoader.load('./cardsContainer/name.png');
@@ -252,7 +252,8 @@
 
       // 基本情報
       const texture3 = textureLoader.load('./cardsContainer/base-data.png');
-      const geometry3 = new THREE.PlaneGeometry(2.75, 2, 1, 1);
+      // const geometry3 = new THREE.PlaneGeometry(2.75, 2, 1, 1);
+      const geometry3 = new THREE.BoxGeometry(2.75, 2, 0.1);
       const material3 = new THREE.MeshBasicMaterial({
         map: texture3,
         side: THREE.DoubleSide,
@@ -263,15 +264,16 @@
       cardsContainer.add(card3)
 
       // 基本情報の裏にあるシート
-      const geometry3_2 = new THREE.PlaneGeometry(2.75, 2, 1, 1);
-      const card3_2 = new THREE.Mesh(geometry3_2, material_basesheet);
-      card3_2.position.set(-0.7, 0.9, 1.9);
-      card3_2.rotation.x = -90;
-      cardsContainer.add(card3_2)
+      // const geometry3_2 = new THREE.PlaneGeometry(2.75, 2, 1, 1);
+      // const card3_2 = new THREE.Mesh(geometry3_2, material_basesheet);
+      // card3_2.position.set(-0.7, 0.9, 1.9);
+      // card3_2.rotation.x = -90;
+      // cardsContainer.add(card3_2)
 
       // サイトのサムネ
       const texture4 = textureLoader.load('./cardsContainer/mysite-image.png');
-      const geometry4 = new THREE.PlaneGeometry(2.7, 2, 1, 1);
+      // const geometry4 = new THREE.PlaneGeometry(2.7, 2, 1, 1);
+      const geometry4 = new THREE.BoxGeometry(2.7, 2, 0.1);
       const material4 = new THREE.MeshBasicMaterial({
         map: texture4,
         side: THREE.DoubleSide,
@@ -282,11 +284,11 @@
       cardsContainer.add(card4)
 
       //　の裏
-      const geometry4_2 = new THREE.PlaneGeometry(2.7, 2, 1, 1);
-      const card4_2 = new THREE.Mesh(geometry4, material_basesheet);
-      card4_2.position.set(2.15, 0.9, 1.9);
-      card4_2.rotation.x = -90;
-      cardsContainer.add(card4_2)
+      // const geometry4_2 = new THREE.PlaneGeometry(2.7, 2, 1, 1);
+      // const card4_2 = new THREE.Mesh(geometry4, material_basesheet);
+      // card4_2.position.set(2.15, 0.9, 1.9);
+      // card4_2.rotation.x = -90;
+      // cardsContainer.add(card4_2)
 
       const geometry5 = new THREE.CircleGeometry(0.6, 32);
       const material5 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });

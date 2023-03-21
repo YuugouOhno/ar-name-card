@@ -230,6 +230,8 @@
       card4.position.set(2.15, 1.1, 1.9);
       card4.rotation.x = -90;
       cardsContainer.add(card4)
+
+      cardsContainer.scale.set(0.7,0.7,0.7);
       scene.add(cardsContainer);
     }
     const setIcon = () => {
@@ -270,6 +272,8 @@
     const removeNameCards = () => {
       scene.remove(name);
       scene.remove(icon);
+      scene.remove(cardsContainer);
+
     }
 
     // ----------------------------------------------------------------------------------------------------------------

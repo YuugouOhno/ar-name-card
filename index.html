@@ -204,36 +204,65 @@
     const setCardsContainer = () => {
       cardsContainer = new THREE.Group();
       const geometry1 = new THREE.PlaneGeometry(2, 2);
-      const material1 = new THREE.MeshBasicMaterial();
+      const material1 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
       const card1 = new THREE.Mesh(geometry1, material1);
       card1.position.set(-1.1, 0, 0);
       card1.rotation.x = -90;
       cardsContainer.add(card1)
 
       const geometry2 = new THREE.PlaneGeometry(3.5, 2);
-      const material2 = new THREE.MeshBasicMaterial();
+      const material2 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
       const card2 = new THREE.Mesh(geometry2, material2);
       card2.position.set(1.8, 0, 0);
       card2.rotation.x = -90;
       cardsContainer.add(card2)
 
       const geometry3 = new THREE.PlaneGeometry(2.75, 2);
-      const material3 = new THREE.MeshBasicMaterial();
+      const material3 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
       const card3 = new THREE.Mesh(geometry3, material3);
-      card3.position.set(-0.7, 1.1, 1.9);
+      card3.position.set(-0.7, 1, 1.9);
       card3.rotation.x = -90;
       cardsContainer.add(card3)
 
       const geometry4 = new THREE.PlaneGeometry(2.7, 2);
-      const material4 = new THREE.MeshBasicMaterial();
+      const material4 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
       const card4 = new THREE.Mesh(geometry4, material4);
-      card4.position.set(2.15, 1.1, 1.9);
+      card4.position.set(2.15, 1, 1.9);
       card4.rotation.x = -90;
       cardsContainer.add(card4)
+
+      const geometry5 = new THREE.CircleGeometry(0.6, 32);
+      const material5 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const card5 = new THREE.Mesh(geometry5, material5);
+      card5.position.set(-1.3, 2, 3.6);
+      card5.rotation.x = -90;
+      cardsContainer.add(card5)
+
+      const geometry6 = new THREE.CircleGeometry(0.6, 32);
+      const material6 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const card6 = new THREE.Mesh(geometry6, material6);
+      card6.position.set(0, 2, 3.6);
+      card6.rotation.x = -90;
+      cardsContainer.add(card6)
+
+      const geometry7 = new THREE.CircleGeometry(0.6, 32);
+      const material7 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const card7 = new THREE.Mesh(geometry7, material7);
+      card7.position.set(1.3, 2, 3.6);
+      card7.rotation.x = -90;
+      cardsContainer.add(card7)
+
+      const geometry8 = new THREE.CircleGeometry(0.6, 32);
+      const material8 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const card8 = new THREE.Mesh(geometry8, material8);
+      card8.position.set(2.6, 2, 3.6);
+      card8.rotation.x = -90;
+      cardsContainer.add(card8)
 
       cardsContainer.scale.set(0.7,0.7,0.7);
       scene.add(cardsContainer);
     }
+    
     const setIcon = () => {
       const textureLoader = new THREE.TextureLoader();
       const icon_texture = textureLoader.load('./icon.png');

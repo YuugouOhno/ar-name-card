@@ -17,6 +17,13 @@
 </head>
 
 <body>
+  <a href="javascript:void(0)" onclick="fishview()" class="btn btn-svg">
+    <svg>
+      <rect x="2" y="2" rx="0" fill="none" width=200 height="50"></rect>
+    </svg>
+    <span id="btn-value">魚を観察する</span>
+  </a>
+
   <canvas id="canvas"></canvas>
   <!-- <canvas class="webgl" style="z-index: index 10;"></canvas> -->
   <!-- <script type="importmap">
@@ -32,6 +39,25 @@
 
 
   <script>
+    let isFish = false;
+
+    const fishview = () => {
+      let text = document.getElementById('btn-value').innerHTML;
+      if (isFish) {
+        document.getElementById('btn-value').innerHTML = '<span id="btn-value">魚を観察する</span>';
+        setNameCards();
+        for (let i = 0; i < boids.length; i++) {
+          // console.log(boids[i])
+          scene.remove(boids[i].object);
+        }
+        boids.splice(0);
+      } else {
+        document.getElementById('btn-value').innerHTML = '<span id="btn-value">名刺を表示する</span>';
+        createBoids(params);
+        removeNameCards();
+      }
+      isFish = !isFish;
+    }
 
     let w;
     let h;
@@ -56,11 +82,6 @@
       canvas = document.getElementById("canvas");
       setScene();
       setCamera();
-      // setObject();
-      createBoids(params);
-      // const test = createGlTFfish();
-      // const test = fish({ x: 0.07, y: 0.07, z: 0.07 }, fishMaterial)
-      // scene.add(test)
       setNameCards();
       setLight();
       setArToolkit();
@@ -188,7 +209,8 @@
     };
 
     // ----------------------------------------------------------------------------------------------------------------
-
+    let icon
+    let name
 
     const setIcon = () => {
       const textureLoader = new THREE.TextureLoader();
@@ -198,7 +220,7 @@
         map: icon_texture,
         side: THREE.DoubleSide,
       });
-      const icon = new THREE.Mesh(geometry, material);
+      icon = new THREE.Mesh(geometry, material);
       icon.rotation.x = -90;
       icon.position.set(-1.2, 0, 0);
       scene.add(icon);
@@ -212,7 +234,7 @@
         map: name_texture,
         side: THREE.DoubleSide,
       });
-      const name = new THREE.Mesh(geometry, material);
+      name = new THREE.Mesh(geometry, material);
       name.rotation.x = -90;
       name.position.set(1.2, 0, 0);
       scene.add(name);
@@ -222,6 +244,11 @@
     const setNameCards = () => {
       setIcon()
       setName()
+    }
+
+    const removeNameCards = () => {
+      scene.remove(name);
+      scene.remove(icon);
     }
 
     // ----------------------------------------------------------------------------------------------------------------

@@ -199,7 +199,39 @@
     // 名刺の表示
     let icon
     let name
+    let cardsContainer
 
+    const setCardsContainer = () => {
+      cardsContainer = new THREE.Group();
+      const geometry1 = new THREE.PlaneGeometry(2, 2);
+      const material1 = new THREE.MeshBasicMaterial();
+      const card1 = new THREE.Mesh(geometry1, material1);
+      card1.position.set(-1.1, 0, 0);
+      card1.rotation.x = -90;
+      cardsContainer.add(card1)
+
+      const geometry2 = new THREE.PlaneGeometry(3.5, 2);
+      const material2 = new THREE.MeshBasicMaterial();
+      const card2 = new THREE.Mesh(geometry2, material2);
+      card2.position.set(1.8, 0, 0);
+      card2.rotation.x = -90;
+      cardsContainer.add(card2)
+
+      const geometry3 = new THREE.PlaneGeometry(2.75, 2);
+      const material3 = new THREE.MeshBasicMaterial();
+      const card3 = new THREE.Mesh(geometry3, material3);
+      card3.position.set(-0.7, 1.1, 1.9);
+      card3.rotation.x = -90;
+      cardsContainer.add(card3)
+
+      const geometry4 = new THREE.PlaneGeometry(2.7, 2);
+      const material4 = new THREE.MeshBasicMaterial();
+      const card4 = new THREE.Mesh(geometry4, material4);
+      card4.position.set(2.15, 1.1, 1.9);
+      card4.rotation.x = -90;
+      cardsContainer.add(card4)
+      scene.add(cardsContainer);
+    }
     const setIcon = () => {
       const textureLoader = new THREE.TextureLoader();
       const icon_texture = textureLoader.load('./icon.png');
@@ -230,8 +262,9 @@
     }
 
     const setNameCards = () => {
-      setIcon()
-      setName()
+      setCardsContainer()
+      // setIcon()
+      // setName()
     }
 
     const removeNameCards = () => {

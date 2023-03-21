@@ -203,66 +203,123 @@
 
     const setCardsContainer = () => {
       cardsContainer = new THREE.Group();
-      const geometry1 = new THREE.PlaneGeometry(2, 2);
-      const material1 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const textureLoader = new THREE.TextureLoader();
+
+      // 裏にあるシートのマテリアル
+      const material_basesheet = new THREE.MeshPhongMaterial({
+        transparent: true,
+        opacity: 0.5,
+        color: "#f5f5f5"
+      });
+
+      // アイコン
+      const texture1 = textureLoader.load('./cardsContainer/icon.png');
+      const geometry1 = new THREE.CircleGeometry(1, 32)
+      const material1 = new THREE.MeshBasicMaterial({
+        map: texture1,
+        side: THREE.DoubleSide,
+      });
       const card1 = new THREE.Mesh(geometry1, material1);
       card1.position.set(-1.1, 0, 0);
       card1.rotation.x = -90;
       cardsContainer.add(card1)
 
-      const geometry2 = new THREE.PlaneGeometry(3.5, 2);
-      const material2 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      // アイコンの裏にあるシート
+      const geometry1_2 = new THREE.CircleGeometry(1, 32)
+      const card1_2 = new THREE.Mesh(geometry1_2, material_basesheet);
+      card1_2.position.set(-1.1, -0.1, 0);
+      card1_2.rotation.x = -90;
+      cardsContainer.add(card1_2)
+
+      // 名前
+      const texture2 = textureLoader.load('./cardsContainer/name.png');
+      const geometry2 = new THREE.PlaneGeometry(3.5, 2, 1, 1);
+      const material2 = new THREE.MeshBasicMaterial({
+        map: texture2,
+        side: THREE.DoubleSide,
+      });
       const card2 = new THREE.Mesh(geometry2, material2);
       card2.position.set(1.8, 0, 0);
       card2.rotation.x = -90;
       cardsContainer.add(card2)
 
-      const geometry3 = new THREE.PlaneGeometry(2.75, 2);
-      const material3 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      // 名前の裏にあるシート
+      const geometry2_2 = new THREE.PlaneGeometry(3.5, 2, 1, 1);
+      const card2_2 = new THREE.Mesh(geometry2_2, material_basesheet);
+      card2_2.position.set(1.8, -0.1, 0);
+      card2_2.rotation.x = -90;
+      cardsContainer.add(card2_2)
+
+      // 基本情報
+      const texture3 = textureLoader.load('./cardsContainer/base-data.png');
+      const geometry3 = new THREE.PlaneGeometry(2.75, 2, 1, 1);
+      const material3 = new THREE.MeshBasicMaterial({
+        map: texture3,
+        side: THREE.DoubleSide,
+      });
       const card3 = new THREE.Mesh(geometry3, material3);
       card3.position.set(-0.7, 1, 1.9);
       card3.rotation.x = -90;
       cardsContainer.add(card3)
 
-      const geometry4 = new THREE.PlaneGeometry(2.7, 2);
-      const material4 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      // 基本情報の裏にあるシート
+      const geometry3_2 = new THREE.PlaneGeometry(2.75, 2, 1, 1);
+      const card3_2 = new THREE.Mesh(geometry3_2, material_basesheet);
+      card3_2.position.set(-0.7, 0.9, 1.9);
+      card3_2.rotation.x = -90;
+      cardsContainer.add(card3_2)
+
+      // サイトのサムネ
+      const texture4 = textureLoader.load('./cardsContainer/mysite-image.png');
+      const geometry4 = new THREE.PlaneGeometry(2.7, 2, 1, 1);
+      const material4 = new THREE.MeshBasicMaterial({
+        map: texture4,
+        side: THREE.DoubleSide,
+      });
       const card4 = new THREE.Mesh(geometry4, material4);
       card4.position.set(2.15, 1, 1.9);
       card4.rotation.x = -90;
       cardsContainer.add(card4)
 
+      //　の裏
+      const geometry4_2 = new THREE.PlaneGeometry(2.7, 2, 1, 1);
+      const card4_2 = new THREE.Mesh(geometry4, material_basesheet);
+      card4_2.position.set(2.15, 0.9, 1.9);
+      card4_2.rotation.x = -90;
+      cardsContainer.add(card4_2)
+
       const geometry5 = new THREE.CircleGeometry(0.6, 32);
-      const material5 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const material5 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
       const card5 = new THREE.Mesh(geometry5, material5);
       card5.position.set(-1.3, 2, 3.6);
       card5.rotation.x = -90;
       cardsContainer.add(card5)
 
       const geometry6 = new THREE.CircleGeometry(0.6, 32);
-      const material6 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const material6 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
       const card6 = new THREE.Mesh(geometry6, material6);
       card6.position.set(0, 2, 3.6);
       card6.rotation.x = -90;
       cardsContainer.add(card6)
 
       const geometry7 = new THREE.CircleGeometry(0.6, 32);
-      const material7 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const material7 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
       const card7 = new THREE.Mesh(geometry7, material7);
       card7.position.set(1.3, 2, 3.6);
       card7.rotation.x = -90;
       cardsContainer.add(card7)
 
       const geometry8 = new THREE.CircleGeometry(0.6, 32);
-      const material8 = new THREE.MeshBasicMaterial({side: THREE.DoubleSide});
+      const material8 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
       const card8 = new THREE.Mesh(geometry8, material8);
       card8.position.set(2.6, 2, 3.6);
       card8.rotation.x = -90;
       cardsContainer.add(card8)
 
-      cardsContainer.scale.set(0.7,0.7,0.7);
+      cardsContainer.scale.set(0.7, 0.7, 0.7);
       scene.add(cardsContainer);
     }
-    
+
     const setIcon = () => {
       const textureLoader = new THREE.TextureLoader();
       const icon_texture = textureLoader.load('./icon.png');
@@ -371,7 +428,7 @@
 
       for (let i = 0; i < params.NUMBER; i++) {
         boids.push(
-          new Biont((Math.random() - 0.5)+10 , (Math.random() - 0.5)-50 , (Math.random() - 0.5)+10 , i, params)
+          new Biont((Math.random() - 0.5) + 10, (Math.random() - 0.5) - 50, (Math.random() - 0.5) + 10, i, params)
         );
       }
     }

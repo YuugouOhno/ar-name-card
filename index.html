@@ -477,7 +477,7 @@
       TYPE: "purple",
       SPEED: 0.9,
       MAX_SPEED: 2,
-      CENTER_OF_BOIDS: new THREE.Vector3(0, -50, 0), //群れの中心
+      CENTER_OF_BOIDS: new THREE.Vector3(0, -100, 0), //群れの中心
       ACTION_RANGE_OF_BOIDS: 100, //群れの行動範囲
       WEIGHT_TO_SEPARATION: 2, //条件1 分離
       WEIGHT_TO_ALIGNMENT: 0.001, //条件2 整列
@@ -496,7 +496,7 @@
 
       for (let i = 0; i < params.NUMBER; i++) {
         boids.push(
-          new Biont((Math.random() - 0.5), (Math.random() - 0.5) - 50, (Math.random() - 0.5), i, params)
+          new Biont((Math.random() - 0.5), (Math.random() - 0.5) , (Math.random() - 0.5), i, params)
         );
       }
     }

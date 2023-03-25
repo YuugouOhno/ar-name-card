@@ -35,7 +35,7 @@
       let text = document.getElementById('btn-value').innerHTML;
       if (isFish) {
         document.getElementById('btn-value').innerHTML = '<span id="btn-value">魚を観察する</span>';
-        setNameCards();
+        markerTime = 0
         for (let i = 0; i < boids.length; i++) {
           // console.log(boids[i])
           scene.remove(boids[i].object);

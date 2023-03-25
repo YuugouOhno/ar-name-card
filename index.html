@@ -130,10 +130,10 @@
         changeMatrixMode: "cameraTransformMatrix",
       });
 
-      markerTime = markerControls.addEventListener("markerFound", () => {
-        // マーカーが見つかっている時は毎秒呼ばれる
-        console.log("marker found");
-      });
+      // markerTime = markerControls.addEventListener("markerFound", () => {
+      //   // マーカーが見つかっている時は毎秒呼ばれる
+      //   console.log("marker found");
+      // });
 
     };
 
@@ -195,6 +195,29 @@
       console.log("load")
     };
 
+
+    window.addEventListener('click', (evt) => {
+      console.log("click")
+      const raycaster = new THREE.Raycaster();
+      const vector = new THREE.Vector2(
+        (evt.clientX / window.innerWidth) * 2 - 1,
+        (evt.clientY / window.innerHeight) * -2 + 1
+      );
+
+      raycaster.setFromCamera(vector, camera);
+
+      const intersects = raycaster.intersectObjects(scene.children);
+      console.log(intersects)
+
+      if (intersects.length) {
+        if (intersects[0].object.log) {
+          window.clearTimeout(timer);
+          timer = window.setTimeout(() => intersects[0].object.log(''), 100);
+          intersects[0].object.log('click');
+        }
+      }
+    });
+
     // ----------------------------------------------------------------------------------------------------------------
     // 名刺の表示
     let icon
@@ -214,14 +237,14 @@
 
       // アイコン
       const texture1 = textureLoader.load('./cardsContainer/icon.png');
-      const geometry1 = new THREE.CylinderGeometry( 1, 1, 0.1, 32 )
+      const geometry1 = new THREE.CylinderGeometry(1, 1, 0.1, 32)
       const material1 = new THREE.MeshBasicMaterial({
         map: texture1,
         side: THREE.DoubleSide,
       });
-      const card1 = new THREE.Mesh(geometry1, [material_basesheet,material1,material_basesheet]);
+      const card1 = new THREE.Mesh(geometry1, [material_basesheet, material1, material_basesheet]);
       card1.position.set(-1.1, 0, 0);
-      card1.rotation.set(Math.PI*1.85,Math.PI*0.5,0);
+      card1.rotation.set(Math.PI * 1.85, Math.PI * 0.5, 0);
       cardsContainer.add(card1)
 
       // アイコンの裏にあるシート
@@ -238,7 +261,7 @@
         map: texture2,
         side: THREE.DoubleSide,
       });
-      const card2 = new THREE.Mesh(geometry2, [material_basesheet,material_basesheet,material_basesheet,material_basesheet,material2,material_basesheet]);
+      const card2 = new THREE.Mesh(geometry2, [material_basesheet, material_basesheet, material_basesheet, material_basesheet, material2, material_basesheet]);
       card2.position.set(1.8, 0, 0);
       card2.rotation.x = -90;
       cardsContainer.add(card2)
@@ -258,7 +281,7 @@
         map: texture3,
         side: THREE.DoubleSide,
       });
-      const card3 = new THREE.Mesh(geometry3, [material_basesheet,material_basesheet,material_basesheet,material_basesheet,material3,material_basesheet]);
+      const card3 = new THREE.Mesh(geometry3, [material_basesheet, material_basesheet, material_basesheet, material_basesheet, material3, material_basesheet]);
       card3.position.set(-0.7, 1, 1.9);
       card3.rotation.x = -90;
       cardsContainer.add(card3)
@@ -278,7 +301,7 @@
         map: texture4,
         side: THREE.DoubleSide,
       });
-      const card4 = new THREE.Mesh(geometry4, [material_basesheet,material_basesheet,material_basesheet,material_basesheet,material4,material_basesheet]);
+      const card4 = new THREE.Mesh(geometry4, [material_basesheet, material_basesheet, material_basesheet, material_basesheet, material4, material_basesheet]);
       card4.position.set(2.15, 1, 1.9);
       card4.rotation.x = -90;
       cardsContainer.add(card4)
@@ -291,7 +314,7 @@
       // cardsContainer.add(card4_2)
 
       //  twitter
-      const geometry5 = new THREE.RingGeometry( 0.5, 0.6, 6 );
+      const geometry5 = new THREE.RingGeometry(0.5, 0.6, 6);
       const material5 = new THREE.MeshPhysicalMaterial({
         color: "#483d8b",
         metalness: 0.865,
@@ -304,7 +327,7 @@
       cardsContainer.add(card5)
 
       const texture5_2 = textureLoader.load('./accounts/twitter.png');
-      const geometry5_2 = new THREE.CircleGeometry( 0.4, 32 )
+      const geometry5_2 = new THREE.CircleGeometry(0.4, 32)
       const material5_2 = new THREE.MeshBasicMaterial({
         map: texture5_2,
         side: THREE.DoubleSide,
@@ -315,7 +338,7 @@
       cardsContainer.add(card5_2)
 
       // github
-      const geometry6 = new THREE.RingGeometry( 0.5, 0.6, 6 );
+      const geometry6 = new THREE.RingGeometry(0.5, 0.6, 6);
       const material6 = new THREE.MeshPhysicalMaterial({
         color: "#483d8b",
         metalness: 0.865,
@@ -328,7 +351,7 @@
       cardsContainer.add(card6)
 
       const texture6_2 = textureLoader.load('./accounts/github.png');
-      const geometry6_2 = new THREE.CircleGeometry( 0.4, 32 )
+      const geometry6_2 = new THREE.CircleGeometry(0.4, 32)
       const material6_2 = new THREE.MeshBasicMaterial({
         map: texture6_2,
         side: THREE.DoubleSide,
@@ -338,7 +361,7 @@
       card6_2.rotation.x = -90;
       cardsContainer.add(card6_2)
 
-      const geometry7 = new THREE.RingGeometry( 0.5, 0.6, 6 );
+      const geometry7 = new THREE.RingGeometry(0.5, 0.6, 6);
       const material7 = new THREE.MeshPhysicalMaterial({
         color: "#483d8b",
         metalness: 0.865,
@@ -351,7 +374,7 @@
       cardsContainer.add(card7)
 
       const texture7_2 = textureLoader.load('./accounts/qita.png');
-      const geometry7_2 = new THREE.CircleGeometry( 0.4, 32 )
+      const geometry7_2 = new THREE.CircleGeometry(0.4, 32)
       const material7_2 = new THREE.MeshBasicMaterial({
         map: texture7_2,
         side: THREE.DoubleSide,
@@ -361,7 +384,7 @@
       card7_2.rotation.x = -90;
       cardsContainer.add(card7_2)
 
-      const geometry8 = new THREE.RingGeometry( 0.5, 0.6, 6 );
+      const geometry8 = new THREE.RingGeometry(0.5, 0.6, 6);
       const material8 = new THREE.MeshPhysicalMaterial({
         color: "#483d8b",
         metalness: 0.865,
@@ -374,7 +397,7 @@
       cardsContainer.add(card8)
 
       const texture8_2 = textureLoader.load('./accounts/wantedly.png');
-      const geometry8_2 = new THREE.CircleGeometry( 0.4, 32 );
+      const geometry8_2 = new THREE.CircleGeometry(0.4, 32);
       const material8_2 = new THREE.MeshBasicMaterial({
         map: texture8_2,
         side: THREE.DoubleSide,
@@ -496,7 +519,7 @@
 
       for (let i = 0; i < params.NUMBER; i++) {
         boids.push(
-          new Biont((Math.random() - 0.5), (Math.random() - 0.5) , (Math.random() - 0.5), i, params)
+          new Biont((Math.random() - 0.5), (Math.random() - 0.5), (Math.random() - 0.5), i, params)
         );
       }
     }

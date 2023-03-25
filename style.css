@@ -3,6 +3,9 @@ body {
   overflow: hidden;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 canvas {

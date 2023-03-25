@@ -17,15 +17,18 @@
 </head>
 
 <body>
-  <a href="javascript:void(0)" onclick="fishview()">
-    <span id="btn-value">魚を観察する</span>
-  </a>
+  <div id="arvideo">
+    <a href="javascript:void(0)" onclick="fishview()">
+      <span id="btn-value">魚を観察する</span>
+    </a>
 
-  <canvas id="canvas"></canvas>
+    <canvas id="canvas" style="margin:0;"></canvas>
 
 
-
+  </div>
   <script>
+
+
     let isFish = false;
 
     const fishview = () => {
@@ -174,11 +177,16 @@
     };
 
     const onResize = () => {
+
       arToolkitSource.onResizeElement();
+      arToolkitSource.init(() => {
+        document.getElementById('arvideo').appendChild(arToolkitSource.domElement);
+      });
       arToolkitSource.copyElementSizeTo(renderer.domElement);
       if (arToolkitContext.arController !== null) {
         arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas);
       }
+      
       camera.aspect = window.innerWidth / window.innerHeight;
       // camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -208,8 +216,8 @@
 
     window.onload = () => {
       init();
-      console.log("load")
     };
+
 
 
 

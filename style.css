@@ -35,30 +35,6 @@ canvas {
   margin:0 auto;
 }
 
-a {
-  position: fixed;
-  bottom: 5vh;
-  right: 5vw;
-  text-decoration: none;
-  color: #1d1d1d;
-  display: block;
-  max-width: 240px;
-  padding: 0.5rem;
-  border-radius: 50px;
-  border: 1px solid #1d1d1d;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  font-weight: bold;
-  transition: transform .2s;
-}
-
-a:active {
-  transform: scale(.95);
-}
-
 .modal {
   display: flex;
   position: fixed;

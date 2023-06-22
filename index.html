@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div class="modal">
+  <div class="modal" id="modal">
     <a href="javascript:void(0)" onclick="closeModal()">
       <img src="./card.png">
     </a>
@@ -34,7 +34,7 @@
   <script>
 
 const closeModal = () => {
-  
+  document.getElementById("modal").style.display = "none";
 }
 
     // let isFish = false;

@@ -18,9 +18,9 @@
 
 <body>
   <div id="arvideo">
-    <a href="javascript:void(0)" onclick="fishview()">
+    <!-- <a href="javascript:void(0)" onclick="fishview()">
       <span id="btn-value">魚を観察する</span>
-    </a>
+    </a> -->
 
     <canvas id="canvas" style="margin:0;"></canvas>
 
@@ -28,26 +28,28 @@
   </div>
   <script>
 
+createBoids(params);
+    // let isFish = false;
 
-    let isFish = false;
+    // const fishview = () => {
+    //   let text = document.getElementById('btn-value').innerHTML;
+    //   if (isFish) {
+    //     document.getElementById('btn-value').innerHTML = '<span id="btn-value">魚を観察する</span>';
+    //     markerTime = 0
+    //     for (let i = 0; i < boids.length; i++) {
+    //       // console.log(boids[i])
+    //       scene.remove(boids[i].object);
+    //     }
+    //     boids.splice(0);
+    //   } else {
+    //     document.getElementById('btn-value').innerHTML = '<span id="btn-value">名刺を表示する</span>';
+    //     createBoids(params);
+    //     removeNameCards();
+    //   }
+    //   isFish = !isFish;
+    // }
 
-    const fishview = () => {
-      let text = document.getElementById('btn-value').innerHTML;
-      if (isFish) {
-        document.getElementById('btn-value').innerHTML = '<span id="btn-value">魚を観察する</span>';
-        markerTime = 0
-        for (let i = 0; i < boids.length; i++) {
-          // console.log(boids[i])
-          scene.remove(boids[i].object);
-        }
-        boids.splice(0);
-      } else {
-        document.getElementById('btn-value').innerHTML = '<span id="btn-value">名刺を表示する</span>';
-        createBoids(params);
-        removeNameCards();
-      }
-      isFish = !isFish;
-    }
+    createBoids(params);
 
     let w;
     let h;

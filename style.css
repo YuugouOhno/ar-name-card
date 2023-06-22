@@ -58,3 +58,11 @@ a {
 a:active {
   transform: scale(.95);
 }
+
+.modal {
+  background-color: plum;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color:#1d1d1d;
+}

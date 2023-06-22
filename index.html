@@ -18,19 +18,24 @@
 
 <body>
   <div class="modal">
-    <img src="./card.png">
+    <a href="javascript:void(0)" onclick="closeModal()">
+      <img src="./card.png">
+    </a>
   </div>
   <div id="arvideo">
     <!-- <a href="javascript:void(0)" onclick="fishview()">
       <span id="btn-value">魚を観察する</span>
     </a> -->
-    
+
     <canvas id="canvas" style="margin:0;"></canvas>
 
 
   </div>
   <script>
 
+const closeModal = () => {
+  
+}
 
     // let isFish = false;
 
@@ -52,7 +57,7 @@
     //   isFish = !isFish;
     // }
 
-    
+
 
     let w;
     let h;
